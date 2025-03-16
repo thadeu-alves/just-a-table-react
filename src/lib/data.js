@@ -1,6 +1,13 @@
 export const data = {
     get(){
-        return DB;
+      return DB;
+    },
+    post(object){
+      DB.push({id: crypto.randomUUID(), ...object});
+      console.log(DB.length);
+    },
+    delete(id){
+      DB.splice(id, 1);
     }
 }
 
