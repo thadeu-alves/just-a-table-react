@@ -5,8 +5,8 @@ import { TableRow } from "./components/TableRow.jsx";
 function App() {
   const [dataBase, setDataBase] = useState(data.get());
   console.log("render");
-
-  const object = {
+  
+  const initObject = {
     "profile": {
       "name": "Thadeu",
       "email": "thadeu@gmail.com",
@@ -17,8 +17,21 @@ function App() {
     "workPercentual": 90
   };
 
+  const [object, setObject] = useState(initObject);
+
   const handleAdd = () => {
-    data.post(object);
+    const {profile, area, tags, workPercentual} = object;
+    
+    data.post({
+    profile: {
+      name: profile.name,
+      email: profile.email,
+      imgUrl: profile.imgUrl
+    },
+    area,
+    tags,
+    workPercentual
+    });
     setDataBase([...data.get()]);
   };
 
